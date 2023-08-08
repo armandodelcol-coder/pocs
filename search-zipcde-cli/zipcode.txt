@@ -1,0 +1,2 @@
+CEP: 12912-660; Logradouro: Rua Professor Luiz Nardy, Bairro: Aparecida, Cidade: Bragança Paulista, UF: SP
+CEP: ; Logradouro: , Bairro: , Cidade: , UF: 
