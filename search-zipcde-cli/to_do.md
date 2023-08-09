@@ -1,0 +1,3 @@
+- Learn more about defer to Close file and try to use instead of the way that was done
+- Verify more cases of exceptions and try to treat all of them
+- Review of struct, inteface and "method"
