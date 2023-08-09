@@ -1,2 +1,4 @@
-CEP: 12912-660; Logradouro: Rua Professor Luiz Nardy, Bairro: Aparecida, Cidade: Bragança Paulista, UF: SP
-CEP: ; Logradouro: , Bairro: , Cidade: , UF: 
+CEP: 12915000; Logradouro: Rua Professora Maria Aparecida Assis Andrade Luz, Bairro: Chácara Portal das Estâncias, Cidade: Bragança Paulista, UF: SP, Error: false
+CEP: 12913550; Logradouro: , Bairro: , Cidade: , UF: , Error: false
+CEP: 12912665; Logradouro: , Bairro: , Cidade: , UF: , Error: false
+CEP: 1291266; Logradouro: , Bairro: , Cidade: , UF: , Error: true

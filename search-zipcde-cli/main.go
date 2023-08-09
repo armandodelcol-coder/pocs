@@ -19,6 +19,7 @@ type ViaCEP struct {
 	Gia         string `json:"gia"`
 	Ddd         string `json:"ddd"`
 	Siafi       string `json:"siafi"`
+	Error       bool
 }
 
 func main() {
@@ -41,7 +42,8 @@ func main() {
 		err = json.Unmarshal(res, &data)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Erro ao fazer o parse da resposta %v\n", err)
-			continue
+			data.Error = true
+			data.Cep = zipcode
 		}
 
 		file, err := os.OpenFile("zipcode.txt", os.O_APPEND|os.O_CREATE|os.O_RDWR, 0644)
@@ -50,16 +52,13 @@ func main() {
 			continue
 		}
 
+		defer file.Close()
+
 		toWrite := fmt.Sprintf(
-			"CEP: %s; Logradouro: %s, Bairro: %s, Cidade: %s, UF: %s\n", data.Cep, data.Logradouro, data.Bairro, data.Localidade, data.Uf)
+			"CEP: %s; Logradouro: %s, Bairro: %s, Cidade: %s, UF: %s, Error: %v\n", zipcode, data.Logradouro, data.Bairro, data.Localidade, data.Uf, data.Error)
 		if _, err := file.Write([]byte(toWrite)); err != nil {
-			file.Close()
 			fmt.Fprintf(os.Stderr, "Erro ao escrever no arquivo %v\n", err)
 			continue
-		}
-
-		if err := file.Close(); err != nil {
-			fmt.Fprintf(os.Stderr, "Erro ao fechar o arquivo %v\n", err)
 		}
 	}
 }
