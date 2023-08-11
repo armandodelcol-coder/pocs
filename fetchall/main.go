@@ -28,8 +28,15 @@ func fetch(url string, ch chan<- string) {
 		return
 	}
 
-	nbytes, err := io.Copy(io.Discard, resp.Body)
+	file, err := os.OpenFile("analysis.txt", os.O_APPEND|os.O_CREATE|os.O_RDWR, 0644)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Erro ao abrir o arquivo analysis: %v\n", err)
+	}
+	nbytes, err := io.Copy(file, resp.Body)
+
 	resp.Body.Close()
+	file.Close()
+
 	if err != nil {
 		ch <- fmt.Sprintf("while reading %s: %v", url, err)
 		return
